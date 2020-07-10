@@ -17,11 +17,10 @@ function floatTank(float){
         floats[4].style.display = "block";
         floats[5].style.display = "block";
         floats[6].style.display = "block";
-        floats[7].style.display = "block";
     };
     if(float === "resume"){
         hideFloats();
-        floats[8].style.display = "block";
+        floats[7].style.display = "block";
     };
 }
 
@@ -33,5 +32,5 @@ function hideFloats(){
 }
 
 window.onload = () => {
-    hideFloats();
+    floatTank("home");
 };
