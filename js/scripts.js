@@ -22,6 +22,10 @@ function floatTank(float){
         hideFloats();
         floats[7].style.display = "block";
     };
+    if(float === "projects"){
+        hideFloats();
+        floats[8].style.display = "block";
+    };
 }
 
 function hideFloats(){
