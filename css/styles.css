@@ -1,10 +1,26 @@
 body{
+    background-image: linear-gradient(#d2d2d2, #e6e6e6);
     margin: 0px;
     font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+
+a{
+    color: #b10f0f;
+    font-weight: 800;
+}
+
+form{
+    background: white;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 25px;
+    border-radius: 20px;
 }
 
 .navPanel{
-    background-image: linear-gradient(#c1c1d0, #9393a2);
+    background: white;
     text-align: center;
     width: 100%;
     padding-top: 10px;
