@@ -1,20 +1,51 @@
 body{
     margin: 0px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.navpanel{
+.navPanel{
     background-image: linear-gradient(#c1c1d0, #9393a2);
     text-align: center;
     width: 100%;
     padding-top: 10px;
+    margin-bottom: 30px;
 }
 
-.navheader{
+.navHeader{
     font-size: 400%;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
-.navbar{
+.navBar{
     display: inline-block;
+    font-size: 125%;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.floatTank{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+}
+
+.floatHeader{
+    font-size: 160%;
+}
+
+#servicesArtistic{
+    margin-bottom: 35px;
+}
+
+#servicesIndustrialDesign{
+    margin-bottom: 35px;
+}
+
+#servicesInformationTechnology{
+    margin-bottom: 35px;
+}
+
+#servicesWebDevelopmentAndDesign{
+    margin-bottom: 35px;
 }

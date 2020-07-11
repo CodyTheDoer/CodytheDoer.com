@@ -5,21 +5,24 @@
     <title>CodyTheDoer</title>
     <meta name="CodyTheDoer.com" content="Welcome to the online portfolio for Cody Williams, the Doer.">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+    </style>
 </head>
 <body>
     <script src="js/scripts.js"></script>
-    <div class="navpanel">
-        <div class="navheader">Cody The Doer</div>
-        <div class="navbar">
-            <a class="navlink" href="#Home" onclick='floatTank("home")'>Home</a>
-            <a class="navlink" href="#Services" onclick='floatTank("services")'>Services</a>
-            <a class="navlink" href="#Resume" onclick='floatTank("resume")'>Resume</a>
-            <a class="navlink" href="#Contact" onclick='floatTank("contact")'>Contact Me</a>
-            <a class="navlink" href="#Projects" onclick='floatTank("projects")'>Projects</a>
+    <div class="navPanel">
+        <div class="navHeader">Cody The Doer</div>
+        <div class="navBar">
+            <a class="navLink" href="#Home" onclick='floatTank("home")'>Home</a>
+            <a class="navLink" href="#Services" onclick='floatTank("services")'>Services</a>
+            <a class="navLink" href="#Resume" onclick='floatTank("resume")'>Resume</a>
+            <a class="navLink" href="#Contact" onclick='floatTank("contact")'>Contact Me</a>
+            <a class="navLink" href="#Projects" onclick='floatTank("projects")'>Projects</a>
         </div>
     </div>
     <div class="floatTank">
-        <div class="float" name="homeMain">
+        <div class="float" id="homeMain">
             <div class="floatHeader">
                 Welcome to my personal Archive of Awesome
             </div>
@@ -29,7 +32,7 @@
             I’m a tinkerer and always striving to make cool things and improve already existing areas of my life. If you would like to stay up to date with the collusion of creation (Which you should!) Feel encouraged to register your information on the contact me page!
             <br>
         </div>
-        <div class="float" name="ContactMe">
+        <div class="float" id="ContactMe">
             <div class="floatHeader">
                 Contact Me
             </div>
@@ -75,7 +78,7 @@
                 <br>
             </form>            
         </div>
-        <div class="float" name="servicesArtistic">
+        <div class="float" id="servicesArtistic">
             <div class="floatHeader">
                 Artistic Services
             </div>
@@ -93,7 +96,7 @@
             Photography (Product, Landscape, Portrait)
             <br>
         </div>
-        <div class="float" name="servicesIndustrialDesign">
+        <div class="float" id="servicesIndustrialDesign">
             <div class="floatHeader">
                 Industrial Design
             </div>
@@ -109,7 +112,7 @@
             Rapid Custom Project Prototyping 
             <br>           
         </div>
-        <div class="float" name="servicesInformationTechnology">
+        <div class="float" id="servicesInformationTechnology">
             <div class="floatHeader">
                 Information Technology
             </div>
@@ -127,7 +130,7 @@
             Windows, Apple (iOS & MAC), & Linux Assistance
             <br>
         </div>
-        <div class="float" name="servicesWebDevelopmentAndDesign">
+        <div class="float" id="servicesWebDevelopmentAndDesign">
             <div class="floatHeader">
                 Web Development & Design
             </div>
@@ -141,16 +144,16 @@
             Server Setup Assistance
             <br>
         </div>
-        <div class="float" name="resume">
+        <div class="float" id="resume">
             I am motivated and working to increase my knowledge, influence people positively, and continue to enjoy my life.
             <br>
             My resume is available upon request, please feel free to reach out to me @ContactMe.
             <br>
         </div>
-        <div class="float" name="demoProjects">
+        <div class="float" id="demoProjects">
 
         </div>
-        <div class="float" name="MailingList">
+        <div class="float" id="MailingList">
             <br>
             <div class="floatHeader">
                 <a href="#contactLink">Join The Doer’s Mailing List!</a>
