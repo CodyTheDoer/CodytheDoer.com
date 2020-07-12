@@ -1,4 +1,7 @@
+var mailExpansionTracker = 0;
+
 function floatTank(float){
+    mailExpansionTracker = 0;
     hideFloats();
     let variableFloat = document.getElementsByClassName(`float ${float}`);
     for(i=0; i<variableFloat.length; i++){
@@ -29,18 +32,21 @@ function urlLoad(){
 
 function quickMail(){
     const quickMail = document.getElementsByClassName("float QuickMail");
-    let div = document.createElement("div");
-    div.setAttribute('class','float MailExpansion');
-    div.innerHTML = `
-        <form class="contactForm">
-            <label for="email">Your Email (required)</label>
-            <input type="text" id="email" name="email">
-            <br>
-            <input type="submit" value="Send">
-            <br>
-        </form>   
-    `;
-    quickMail[0].appendChild(div);
+    if(mailExpansionTracker === 0){
+        let div = document.createElement("div");
+        div.setAttribute('class','float MailExpansion');
+        div.innerHTML = `
+            <form class="contactForm">
+                <label for="email">Your Email (required)</label>
+                <input type="text" id="email" name="email">
+                <br>
+                <input type="submit" value="Send">
+                <br>
+            </form>   
+        `;
+        quickMail[0].appendChild(div);
+        mailExpansionTracker++;
+    };
 };
 
 window.onload = () => {
