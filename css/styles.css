@@ -11,6 +11,10 @@ a{
     padding: 10px;
 }
 
+input[type=text]{
+    width: 23vw;
+}
+
 form{
     background: white;
     text-align: left;
