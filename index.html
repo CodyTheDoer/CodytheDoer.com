@@ -15,7 +15,7 @@
         <div class="navHeader">Cody The Doer</div>
         <div class="navBar">
             <a class="navLink" href="#Home" onclick='floatTank("Home")'>Home</a>
-            <a class="navLink" href="#Services" onclick='floatTank("Service")'>Services</a>
+            <a class="navLink" href="#Services" onclick='floatTank("Services")'>Services</a>
             <a class="navLink" href="#About" onclick='floatTank("About")'>About Me</a>
             <a class="navLink" href="#Contact" onclick='floatTank("Contact")'>Contact Me</a>
             <a class="navLink" href="#Demos" onclick='floatTank("Demos")'>Demos</a>
@@ -73,14 +73,11 @@
                 <input type="checkbox" name="request7" value="Other">
                 <label for="request7"> Other</label>
                 <br>
-                <label for="email">Your Email (required)</label>
-                <input type="text" id="email" name="email">
-                <br>
                 <input type="submit" value="Send">
                 <br>
             </form>            
         </div>
-        <div class="float Service" id="servicesArtistic">
+        <div class="float Services" id="servicesArtistic">
             <div class="floatHeader">
                 Artistic Services
             </div>
@@ -98,7 +95,7 @@
             Photography (Product, Landscape, Portrait)
             <br>
         </div>
-        <div class="float Service" id="servicesIndustrialDesign">
+        <div class="float Services" id="servicesIndustrialDesign">
             <div class="floatHeader">
                 Industrial Design
             </div>
@@ -114,7 +111,7 @@
             Rapid Custom Project Prototyping 
             <br>           
         </div>
-        <div class="float Service" id="servicesInformationTechnology">
+        <div class="float Services" id="servicesInformationTechnology">
             <div class="floatHeader">
                 Information Technology
             </div>
@@ -132,7 +129,7 @@
             Windows, Apple (iOS & MAC), & Linux Assistance
             <br>
         </div>
-        <div class="float Service" id="servicesWebDevelopmentAndDesign">
+        <div class="float Services" id="servicesWebDevelopmentAndDesign">
             <div class="floatHeader">
                 Web Development & Design
             </div>
@@ -159,7 +156,7 @@
         <div class="float QuickMail" id="mailingList">
             <br>
             <div class="floatHeader">
-                <a href="#contactLink">In a rush? Join The Doer’s Mailing List!</a>
+                <a href="#contactLink" onclick='quickMail()'>In a rush? Join The Doer’s Mailing List!</a>
             </div>
             <br>
             Sign up for my mailing list and I will keep you up to speed on my new and existing projects, pursuits, and passions.

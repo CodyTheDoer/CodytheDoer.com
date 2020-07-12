@@ -1,17 +1,12 @@
 function floatTank(float){
-    const floatOptions = ["Home", "Demos", "About", "Service", "QuickMail", "Contact"];
     hideFloats();
-    for(i=0; i<floatOptions.length; i++){
-        if(float == floatOptions[i]){
-            let variableFloat = document.getElementsByClassName(`float ${float}`);
-            for(i=0; i<variableFloat.length; i++){
-                variableFloat[i].style.display = "block";
-            }
-            if(float != "Contact"){
-                let quickMail = document.getElementsByClassName("float QuickMail");
-                quickMail[0].style.display = "block";
-            }
-        }
+    let variableFloat = document.getElementsByClassName(`float ${float}`);
+    for(i=0; i<variableFloat.length; i++){
+        variableFloat[i].style.display = "block";
+    }
+    if(float != "Contact"){
+        let quickMail = document.getElementsByClassName("float QuickMail");
+        quickMail[0].style.display = "block";
     }
 }
 
@@ -30,6 +25,22 @@ function urlLoad(){
     }
     let urlLoad = url.slice(urlRef+1);
     return urlLoad;
+};
+
+function quickMail(){
+    const quickMail = document.getElementsByClassName("float QuickMail");
+    let div = document.createElement("div");
+    div.setAttribute('class','float MailExpansion');
+    div.innerHTML = `
+        <form class="contactForm">
+            <label for="email">Your Email (required)</label>
+            <input type="text" id="email" name="email">
+            <br>
+            <input type="submit" value="Send">
+            <br>
+        </form>   
+    `;
+    quickMail[0].appendChild(div);
 };
 
 window.onload = () => {
