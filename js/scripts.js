@@ -1,33 +1,18 @@
 function floatTank(float){
-    const floats = document.getElementsByClassName('float');
-
-    if(float === "home"){
-        hideFloats();
-        floats[0].style.display = "block";
-        floats[8].style.display = "block";
-    };
-    if(float === "contact"){
-        hideFloats();
-        floats[1].style.display = "block";
-    };
-    if(float === "services"){
-        hideFloats();
-        floats[2].style.display = "block";
-        floats[3].style.display = "block";
-        floats[4].style.display = "block";
-        floats[5].style.display = "block";
-        floats[8].style.display = "block";
-    };
-    if(float === "resume"){
-        hideFloats();
-        floats[6].style.display = "block";
-        floats[8].style.display = "block";
-    };
-    if(float === "projects"){
-        hideFloats();
-        floats[7].style.display = "block";
-        floats[8].style.display = "block";
-    };
+    const floatOptions = ["Home", "Demos", "About", "Service", "QuickMail", "Contact"];
+    hideFloats();
+    for(i=0; i<floatOptions.length; i++){
+        if(float == floatOptions[i]){
+            let variableFloat = document.getElementsByClassName(`float ${float}`);
+            for(i=0; i<variableFloat.length; i++){
+                variableFloat[i].style.display = "block";
+            }
+            if(float != "Contact"){
+                let quickMail = document.getElementsByClassName("float QuickMail");
+                quickMail[0].style.display = "block";
+            }
+        }
+    }
 }
 
 function hideFloats(){
@@ -37,6 +22,16 @@ function hideFloats(){
     }
 }
 
+function urlLoad(){
+    let url = document.URL;
+    let urlRef = url.indexOf('#');
+    if(urlRef === -1){
+        return "Home";
+    }
+    let urlLoad = url.slice(urlRef+1);
+    return urlLoad;
+};
+
 window.onload = () => {
-    floatTank("home");
+    floatTank(urlLoad());
 };
