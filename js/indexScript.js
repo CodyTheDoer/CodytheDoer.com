@@ -56,18 +56,25 @@ function floatDemoReturn(){
         demoList.push(floatDemos[i].id)
     }
     return demoList;
-}
+};
 
-function floatDemoHandler(){
+function floatDemoImport(){
     const demoList = floatDemoReturn();
     for(i=0; i<demoList.length; i++){
         let imported = document.createElement('script');
-        imported.src = `js/demo${demoList[i]}.js`;
+        imported.src = `demo/js/demo${demoList[i]}.js`;
         document.head.appendChild(imported);
     };
 }
 
+function floatDemoLaunch(demo){
+    var doc = document.implementation.createHTMLDocument();
+    doc.src = `demo/html/demo${demo}.html`
+    var iframeDoc = document.querySelector('iframe').contentDocument;
+    iframeDoc.replaceChild(doc.documentElement, iframeDoc.documentElement);
+};
+
 window.onload = () => {
     floatTank(urlLoad());
-    floatDemoHandler();
+    floatDemoImport();
 };

@@ -12,6 +12,13 @@ a{
     cursor: pointer;
 }
 
+button{
+    width:100%;
+    min-width: 14vw;
+    height: 2vh;
+    margin-bottom: 3vh
+}
+
 input[type=text]{
     width: 23vw;
 }
