@@ -7,6 +7,10 @@ function floatTank(float){
     for(i=0; i<variableFloat.length; i++){
         variableFloat[i].style.display = "block";
     }
+    if(float === "Demos"){
+        let demoIFrame = document.querySelector('iframe');
+        demoIFrame.style.display = "none";
+    }
     if(float != "Contact"){
         let quickMail = document.getElementsByClassName("float QuickMail");
         quickMail[0].style.display = "block";
@@ -53,8 +57,10 @@ function floatDemoReturn(){
     const demoList = [];
     const floatDemos = document.getElementsByClassName("float Demos");
     for(i=0; i<floatDemos.length; i++){
-        demoList.push(floatDemos[i].id)
-    }
+        if(floatDemos[i].id != "FloatDemosContainer"){
+            demoList.push(floatDemos[i].id);
+        };
+    };
     return demoList;
 };
 
@@ -68,6 +74,10 @@ function floatDemoImport(){
 }
 
 function floatDemoLaunch(demo){
+    let demoIFrame = document.querySelector('iframe');
+    if(demoIFrame.style.display === "none"){
+        demoIFrame.style.display = "block";
+    }
     var doc = document.implementation.createHTMLDocument();
     doc.src = `demo/html/demo${demo}.html`
     var iframeDoc = document.querySelector('iframe').contentDocument;
