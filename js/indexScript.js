@@ -49,6 +49,12 @@ function quickMail(){
     };
 };
 
+function importScripts(project){
+    let imported = document.createElement('script');
+    imported.src = `${project}.js`;
+    document.head.appendChild(imported);
+}
+
 window.onload = () => {
     floatTank(urlLoad());
 };

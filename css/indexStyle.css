@@ -9,6 +9,7 @@ a{
     color: #b10f0f;
     font-weight: 800;
     padding: 10px;
+    cursor: pointer;
 }
 
 input[type=text]{
