@@ -30,7 +30,7 @@ function urlLoad(){
     return urlLoad;
 };
 
-function quickMail(){
+function floatQuickMail(){
     const quickMail = document.getElementsByClassName("float QuickMail");
     if(mailExpansionTracker === 0){
         let div = document.createElement("div");
@@ -49,12 +49,25 @@ function quickMail(){
     };
 };
 
-function importScripts(project){
-    let imported = document.createElement('script');
-    imported.src = `${project}.js`;
-    document.head.appendChild(imported);
+function floatDemoReturn(){
+    const demoList = [];
+    const floatDemos = document.getElementsByClassName("float Demos");
+    for(i=0; i<floatDemos.length; i++){
+        demoList.push(floatDemos[i].id)
+    }
+    return demoList;
+}
+
+function floatDemoHandler(){
+    const demoList = floatDemoReturn();
+    for(i=0; i<demoList.length; i++){
+        let imported = document.createElement('script');
+        imported.src = `js/demo${demoList[i]}.js`;
+        document.head.appendChild(imported);
+    };
 }
 
 window.onload = () => {
     floatTank(urlLoad());
+    floatDemoHandler();
 };
