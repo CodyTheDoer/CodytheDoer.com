@@ -71,6 +71,11 @@ function floatDemoImport(){
         imported.src = `demo/js/demo${demoList[i]}.js`;
         document.head.appendChild(imported);
     };
+    for(i=0; i<demoList.length; i++){
+        let imported = document.createElement('style');
+        imported.src = `demo/css/demo${demoList[i]}.css`;
+        document.head.appendChild(imported);
+    };
 }
 
 function floatDemoLaunch(demo){
@@ -79,7 +84,7 @@ function floatDemoLaunch(demo){
         demoIFrame.style.display = "block";
     }
     var doc = document.implementation.createHTMLDocument();
-    doc.src = `demo/html/demo${demo}.html`
+    doc.body.append(src = `demo/html/demo${demo}.html`);
     var iframeDoc = document.querySelector('iframe').contentDocument;
     iframeDoc.replaceChild(doc.documentElement, iframeDoc.documentElement);
 };
