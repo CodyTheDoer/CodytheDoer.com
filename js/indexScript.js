@@ -1,8 +1,4 @@
-const activeDemos = [
-    ["Sketchpad", "HTML CSS Javascript", "DOM Manipulation Deep Dive."], 
-    ["PleasantClock", "HTML CSS Javascript", "Project to display times considered pleasant and reduce distraction."], 
-    ["RetroCalculator", "HTML CSS Javascript", "Retro-style Calculator."],
-];
+let activeDemos = [];
 let mailExpansionTracker = 0;
 
 function floatTank(float){
@@ -90,6 +86,36 @@ function floatDemoLaunch(demo){
 function externalDemoLaunch(demo){
     window.open(`demo/${demo}.html`, `${demo}`);
 };
+
+function externalDemoLoader(){
+    fetch('/demo/activeDemos')
+    .then(response => response.text())
+    .then((data) => {
+        parseAndUpdateDemos(data);
+    })
+}
+
+function parseAndUpdateDemos(demos){
+    let demoParse = demos;
+    while(demoParse.length > 5){
+        let demoStart = demos.indexOf(`["`);
+        let demoEnd = demos.indexOf(`],`);
+        let pendingDemoFull = demos.slice(demoStart+1, demoEnd);
+        pendingDemoFull.replace(/^"(.+(?="$))"$/, '$1'); //regex to clean up double quotes.
+        let demoNameEnd = pendingDemoFull.indexOf(`",`);
+        let demoName = pendingDemoFull.slice(1, demoNameEnd);
+        let demoTrimmed = pendingDemoFull.slice(demoNameEnd+3)
+        let demoToolsEnd = demoTrimmed.indexOf(`",`);
+        let demoTools = demoTrimmed.slice(1, demoToolsEnd);
+        let demoDescriptorEnd = demoTrimmed.lastIndexOf(`"`);
+        let demoDescriptor = demoTrimmed.slice(demoToolsEnd+4, demoDescriptorEnd);
+        let demoArray = [demoName, demoTools, demoDescriptor]
+        activeDemos.push(demoArray);
+        demoParse = demoParse.slice(demoParse.indexOf(`],`)+3);
+    };
+}
+
+externalDemoLoader();
 
 window.onload = () => {
     floatTank(urlLoad());
