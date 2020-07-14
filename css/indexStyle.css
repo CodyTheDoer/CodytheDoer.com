@@ -14,7 +14,7 @@ a{
 
 button{
     width: 49%;
-    min-width: 14vw;
+    min-width: 210px;
     height: 2.5vh;
     margin-bottom: 3vh
 }

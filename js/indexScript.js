@@ -53,27 +53,16 @@ function floatQuickMail(){
     };
 };
 
-function floatDemoReturn(){
-    const demoList = [];
-    const floatDemos = document.getElementsByClassName("float Demos");
-    for(i=0; i<floatDemos.length; i++){
-        if(floatDemos[i].id != "FloatDemosContainer"){
-            demoList.push(floatDemos[i].id);
-        };
-    };
-    return demoList;
-};
-
 function floatDemoLaunch(demo){
     let demoIFrame = document.querySelector('iframe');
     if(demoIFrame.style.display === "none"){
         demoIFrame.style.display = "block";
     }
-    document.querySelector('iframe').src = `demo/demo${demo}.html`;
+    document.querySelector('iframe').src = `demo/${demo}.html`;
 };
 
 function externalDemoLaunch(demo){
-    window.open(`demo/demo${demo}.html`, `${demo}`);
+    window.open(`demo/${demo}.html`, `${demo}`);
 };
 
 window.onload = () => {
