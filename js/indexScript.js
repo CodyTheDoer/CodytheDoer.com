@@ -92,6 +92,7 @@ function externalDemoLoader(){
     .then(response => response.text())
     .then((data) => {
         parseAndUpdateDemos(data);
+        floatDemoPopulate();
     })
 }
 
@@ -115,8 +116,11 @@ function parseAndUpdateDemos(demos){
     };
 }
 
+
 externalDemoLoader();
+
 window.onload = () => {
     floatTank(urlLoad());
-    floatDemoPopulate();
 };
+
+
