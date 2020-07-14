@@ -116,7 +116,6 @@ function parseAndUpdateDemos(demos){
 }
 
 externalDemoLoader();
-
 window.onload = () => {
     floatTank(urlLoad());
     floatDemoPopulate();
