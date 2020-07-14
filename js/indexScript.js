@@ -64,15 +64,6 @@ function floatDemoReturn(){
     return demoList;
 };
 
-function floatDemoImport(){
-    const demoList = floatDemoReturn();
-    for(i=0; i<demoList.length; i++){
-        let imported = document.createElement('script');
-        imported.src = `demo/js/demo${demoList[i]}.js`;
-        document.head.appendChild(imported);
-    };
-}
-
 function floatDemoLaunch(demo){
     let demoIFrame = document.querySelector('iframe');
     if(demoIFrame.style.display === "none"){
@@ -83,5 +74,4 @@ function floatDemoLaunch(demo){
 
 window.onload = () => {
     floatTank(urlLoad());
-    floatDemoImport();
 };

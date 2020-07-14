@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The Pleasant Clock</title>
+  <meta name="description" content="A pleasant clock built in vanilla JS, html, and CSS">
+  <meta name="author" content="CodyTheDoer">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
+  <style>
+    body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  background-color: #d9d1e6;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  color: #515c8a;
+
+}
+
+#heading{
+    padding-top: 100px;
+    font-size: 3vw;
+}
+
+#clockBody{
+    width: fit-content;
+    display: flex;
+    margin: auto;
+    background-color: #515c8a;
+    border-radius: 250px;
+}
+
+.clockNum{
+    text-align: center;
+    padding: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #7fcdd9;
+    font-size: 22vw;
+}
+  </style>
+</head>
+
+<body>
+    <script>
+    let pleasantArrays = [
+        ["12", "34", "56"],
+        ["01", "23", "45"],
+    ]
+
+    const pleasantCheck = () => {
+        let timeArray = Array.from(checkTime());
+        let hour = timeArray[0];
+        let minute = timeArray[1];
+        let second = timeArray[2];
+        let timeArraySplit1 = timeArray[0] + timeArray[1].split("").shift();
+        let timeArraySplit2 = timeArray[1].split("").pop() + timeArray[2];
+        let pleasantCounter = 0;
+      
+        // [12, 12, 12]
+        // [10, 10, 10]
+        if(hour === minute && hour === second){pleasantCounter++}; 
+        
+        // [01, 54, 10]
+        // [12, 35, 21]
+        if(hour === second.split("").reverse().join("")){pleasantCounter++};
+
+        // [12, 21, 12]
+        // [05, 50, 05]
+        if(hour === second && hour === minute.split("").reverse().join("")){pleasantCounter++}; 
+
+        // [12, 44, 12]
+        // [03, 22, 03]
+        if(hour === second && minute.split("")[0] === minute.split("")[1]){pleasantCounter++}; 
+          
+        // [11, 22, 33]
+        // [11, 55, 00]
+        if(hour.split("")[0] === hour.split("")[1] && minute.split("")[0] === minute.split("")[1] && second.split("")[0] === second.split("")[1]){pleasantCounter++};
+
+        // [233, 233]
+        // [124, 124]
+        if(timeArraySplit1 === timeArraySplit2){pleasantCounter++};
+
+        // [213, 312]
+        // [124, 421]
+        if(timeArraySplit1 === timeArraySplit2.split("").reverse().join("")){pleasantCounter++};
+
+        for(i=0; i<pleasantArrays.length; i++){
+            let timeCheckCounter = 0;
+            if(timeArray[0] === pleasantArrays[i][0]){timeCheckCounter++};
+            if(timeArray[1] === pleasantArrays[i][1]){timeCheckCounter++};
+            if(timeArray[2] === pleasantArrays[i][2]){timeCheckCounter++};
+            if(timeCheckCounter === 3){setTime(timeArray[0], timeArray[1], timeArray[2])};
+        };
+
+        if(pleasantCounter > 0){
+            setTime(timeArray[0], timeArray[1], timeArray[2]);
+            console.log(timeArray);
+        }
+    };
+
+    const checkTime = () => {
+        let time = new Date;
+        let hour = `${time.getHours()}`;
+        let minute = `${time.getMinutes()}`;
+        let second = `${time.getSeconds()}`;
+        if(hour.length === 1){
+          hour = `0${hour}`;
+        }
+        if(minute.length === 1){
+          minute = `0${minute}`;
+        }
+        if(second.length === 1){
+          second = `0${second}`;
+        }
+        let timeArray = [hour,minute,second];
+        return timeArray;
+    };
+
+    const setTime = (hour, minute, second) => {
+        let clock = document.getElementsByClassName("clockNum");
+        clock[0].innerText = hour;
+        clock[1].innerText = minute;
+        clock[2].innerText = second;
+    };
+
+    setInterval(pleasantCheck, 1*1000);
+
+    window.onload = ()=>{
+        let currentTime = Array.from(checkTime());
+        setTime(currentTime[0],currentTime[1],currentTime[2]);
+    }
+    </script>
+    <div id="heading"><h1>Pleasant Clock</h1></div>
+    <div id="subheading"><h3>The Clock designed to help us slow down.</h3></div>
+    <div id="clockBody">
+        <div class="clockNum" name="digitOneTwo">00</div>
+        <div class="clockNum" name="digitThreeFour">00</div>
+        <div class="clockNum" name="digitFiveSix">00</div>
+    </div>
+</body>
+</html>
