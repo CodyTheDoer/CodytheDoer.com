@@ -1,4 +1,9 @@
-var mailExpansionTracker = 0;
+const activeDemos = [
+    ["Sketchpad", "HTML CSS Javascript", "DOM Manipulation Deep Dive."], 
+    ["PleasantClock", "HTML CSS Javascript", "Project to display times considered pleasant and reduce distraction."], 
+    ["RetroCalculator", "HTML CSS Javascript", "Retro-style Calculator."],
+];
+let mailExpansionTracker = 0;
 
 function floatTank(float){
     mailExpansionTracker = 0;
@@ -53,6 +58,27 @@ function floatQuickMail(){
     };
 };
 
+function floatDemoPopulate(){
+    for(i=0; i<activeDemos.length; i++){
+        const floatDemo = document.getElementsByClassName("float Demos Container");
+        let div = document.createElement("div");
+        div.setAttribute('class','float Demos');
+        div.setAttribute('id',`${activeDemos[i][0]}`);
+        div.innerHTML = `
+            <div class="floatHeader">
+                ${activeDemos[i][0]} - ${activeDemos[i][1]}
+            </div>
+            <br>
+            ${activeDemos[i][2]}
+            <br>
+            <button onclick='floatDemoLaunch("${activeDemos[i][0]}")'>${activeDemos[i][0]} - Embeded</button>
+            <button onclick='externalDemoLaunch("${activeDemos[i][0]}")'>${activeDemos[i][0]} - New Window</button>
+            <br>
+        `;
+        floatDemo[0].appendChild(div);
+    }
+};
+
 function floatDemoLaunch(demo){
     let demoIFrame = document.querySelector('iframe');
     if(demoIFrame.style.display === "none"){
@@ -67,4 +93,5 @@ function externalDemoLaunch(demo){
 
 window.onload = () => {
     floatTank(urlLoad());
+    floatDemoPopulate();
 };
