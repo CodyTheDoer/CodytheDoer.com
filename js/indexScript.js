@@ -72,6 +72,10 @@ function floatDemoLaunch(demo){
     document.querySelector('iframe').src = `demo/demo${demo}.html`;
 };
 
+function externalDemoLaunch(demo){
+    window.open(`demo/demo${demo}.html`, `${demo}`);
+};
+
 window.onload = () => {
     floatTank(urlLoad());
 };

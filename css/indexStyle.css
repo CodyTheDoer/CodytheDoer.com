@@ -13,9 +13,9 @@ a{
 }
 
 button{
-    width:100%;
+    width: 49%;
     min-width: 14vw;
-    height: 2vh;
+    height: 2.5vh;
     margin-bottom: 3vh
 }
 
