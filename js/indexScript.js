@@ -54,6 +54,29 @@ function floatQuickMail(){
     };
 };
 
+function floatInjector(floatRoot, floatClass, float){
+    const root = document.getElementsByClassName(floatRoot);
+    if(mailExpansionTracker === 0){
+        let div = document.createElement(`div`);
+        div.setAttribute(`class`,`float ${floatClass}`);
+        div.innerHTML = float;
+        root[0].appendChild(div);
+    };
+};
+
+floatInjector()
+floatInjector("float QuickMail", "MailExpansion", quickMail)
+
+let quickMail = `
+<form class="contactForm">
+    <label for="email">Your Email (required)</label>
+    <input type="text" id="email" name="email">
+    <br>
+    <input type="submit" value="Send">
+    <br>
+</form>
+`
+
 function floatDemoPopulate(){
     for(i=0; i<activeDemos.length; i++){
         const floatDemo = document.getElementsByClassName("float Demos Container");
@@ -75,16 +98,16 @@ function floatDemoPopulate(){
     }
 };
 
+function externalDemoLaunch(demo){
+    window.open(`demo/${demo}.html`, `${demo}`);
+};
+
 function floatDemoLaunch(demo){
     let demoIFrame = document.querySelector('iframe');
     if(demoIFrame.style.display === "none"){
         demoIFrame.style.display = "block";
     }
     document.querySelector('iframe').src = `demo/${demo}.html`;
-};
-
-function externalDemoLaunch(demo){
-    window.open(`demo/${demo}.html`, `${demo}`);
 };
 
 function externalDemoLoader(){
