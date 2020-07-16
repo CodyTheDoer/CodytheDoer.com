@@ -1,9 +1,10 @@
 let activeDemos = [];
+let activeFloats = [];
 let mailExpansionTracker = 0;
 
 function floatTank(float){
     mailExpansionTracker = 0;
-    hideFloats();
+    floatHideAll();
     let variableFloat = document.getElementsByClassName(`float ${float}`);
     for(i=0; i<variableFloat.length; i++){
         variableFloat[i].style.display = "block";
@@ -18,7 +19,7 @@ function floatTank(float){
     }
 }
 
-function hideFloats(){
+function floatHideAll(){
     const floats = document.getElementsByClassName('float');
     for(i=0; i < floats.length; i++){
         floats[i].style.display = "none";
@@ -35,25 +36,6 @@ function urlLoad(){
     return urlLoad;
 };
 
-function floatQuickMail(){
-    const quickMail = document.getElementsByClassName("float QuickMail");
-    if(mailExpansionTracker === 0){
-        let div = document.createElement("div");
-        div.setAttribute('class','float MailExpansion');
-        div.innerHTML = `
-            <form class="contactForm">
-                <label for="email">Your Email (required)</label>
-                <input type="text" id="email" name="email">
-                <br>
-                <input type="submit" value="Send">
-                <br>
-            </form>   
-        `;
-        quickMail[0].appendChild(div);
-        mailExpansionTracker++;
-    };
-};
-
 function floatInjector(floatRoot, floatClass, float){
     const root = document.getElementsByClassName(floatRoot);
     if(mailExpansionTracker === 0){
@@ -64,18 +46,62 @@ function floatInjector(floatRoot, floatClass, float){
     };
 };
 
-floatInjector()
-floatInjector("float QuickMail", "MailExpansion", quickMail)
+function activeFloatCheck(){
+    fetch(`/floats/activeFloats`)
+    .then(response => response.text())
+    .then((data) => {
+        parseAndUpdateFloats(data);
+    });
+};
 
-let quickMail = `
-<form class="contactForm">
-    <label for="email">Your Email (required)</label>
-    <input type="text" id="email" name="email">
-    <br>
-    <input type="submit" value="Send">
-    <br>
-</form>
-`
+function parseAndUpdateFloats(floats){
+    let floatParse = floats;
+    while(floatParse.length > 0){
+        let commaSeperator = floatParse.indexOf(",");
+        let float = floatParse.slice(0, commaSeperator);
+        floatParse = floatParse.slice(commaSeperator+2);
+        activeFloats.push(float)
+    };
+}
+
+function floatLoader(float, extension){
+    fetch(`/floats/${float}.${extension}`)
+    .then(response => response.text())
+    .then((data) => {
+        if(float === "quick-mail"){
+            floatInjector("float QuickMail", "MailExpansion", data)
+        }else{
+            floatInjector("floatTank", float, data);
+        };
+    });
+};
+
+function fileExists(path) {
+    if(path){
+        var req = new XMLHttpRequest();
+        req.open('GET', path, false);
+        req.send();
+        return req.status==200;
+    } else {
+        return false;
+    }
+}
+
+function floatHandler(){
+    activeFloatCheck();
+    for(i=0; i<activeFloats.length; i++){
+        if(fileExists(`/floats/${activeFloats[i]}.header`)){
+            floatLoader(activeFloats[i], "header");
+        };
+        if(fileExists(`/floats/${activeFloats[i]}.body`)){
+            floatLoader(activeFloats[i], "body");
+        };
+        if(fileExists(`/floats/${activeFloats[i]}.form`)){
+            floatLoader(activeFloats[i], "form");
+        };
+    }
+    floatTank(urlLoad());
+}
 
 function floatDemoPopulate(){
     for(i=0; i<activeDemos.length; i++){
@@ -139,11 +165,10 @@ function parseAndUpdateDemos(demos){
     };
 }
 
-
 externalDemoLoader();
 
 window.onload = () => {
-    floatTank(urlLoad());
+    floatHandler()
 };
 
 
