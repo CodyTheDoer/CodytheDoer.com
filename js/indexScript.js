@@ -99,9 +99,9 @@ function externalDemoLoader(){
 function parseAndUpdateDemos(demos){
     let demoParse = demos;
     while(demoParse.length > 5){
-        let demoStart = demos.indexOf(`["`);
-        let demoEnd = demos.indexOf(`],`);
-        let pendingDemoFull = demos.slice(demoStart+1, demoEnd);
+        let demoStart = demoParse.indexOf(`["`);
+        let demoEnd = demoParse.indexOf(`],`);
+        let pendingDemoFull = demoParse.slice(demoStart+1, demoEnd);
         pendingDemoFull.replace(/^"(.+(?="$))"$/, '$1'); //regex to clean up double quotes.
         let demoNameEnd = pendingDemoFull.indexOf(`",`);
         let demoName = pendingDemoFull.slice(1, demoNameEnd);
