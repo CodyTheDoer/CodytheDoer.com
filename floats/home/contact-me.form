@@ -1,0 +1,33 @@
+<form class="contactForm">
+    <label for="name">Your Name (required)</label>
+    <input type="text" id="name" name="name">
+    <br>
+    <label for="email">Your Email (required)</label>
+    <input type="text" id="email" name="email">
+    <br>
+    <br>
+    <label for="request">Request Type (required)</label>
+    <br>
+    <input type="checkbox" name="request1" value="signUp">
+    <label for="request1"> Just Signing Up</label>
+    <br>
+    <input type="checkbox" name="request2" value="Artistic">
+    <label for="request2"> Artistic</label>
+    <br>
+    <input type="checkbox" name="request3" value="Industrial Design">
+    <label for="request3"> Industrial Design</label>
+    <br>
+    <input type="checkbox" name="request4" value="Information-Technology">
+    <label for="request4"> Information-Technology</label>
+    <br>
+    <input type="checkbox" name="request5" value="Web Development and Design">
+    <label for="request5"> Web Development and Design</label>
+    <br>
+    <input type="checkbox" name="request6" value="Resume">
+    <label for="request6"> Resume</label>
+    <br>
+    <input type="checkbox" name="request7" value="Other">
+    <label for="request7"> Other</label>
+    <br>
+    <input type="submit" value="Send">
+</form>            

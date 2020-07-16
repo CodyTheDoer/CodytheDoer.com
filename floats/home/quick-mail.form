@@ -1,0 +1,7 @@
+<form class="contactForm">
+    <label for="email">Your Email (required)</label>
+    <input type="text" id="email" name="email">
+    <br>
+    <input type="submit" value="Send">
+    <br>
+</form>
