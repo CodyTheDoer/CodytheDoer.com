@@ -1,9 +1,10 @@
-let activeDemos = [];
+const activeDemos = [];
+const activeFloats = [];
 let mailExpansionTracker = 0;
 
 function floatTank(float){
     mailExpansionTracker = 0;
-    hideFloats();
+    floatHideAll();
     let variableFloat = document.getElementsByClassName(`float ${float}`);
     for(i=0; i<variableFloat.length; i++){
         variableFloat[i].style.display = "block";
@@ -18,7 +19,7 @@ function floatTank(float){
     }
 }
 
-function hideFloats(){
+function floatHideAll(){
     const floats = document.getElementsByClassName('float');
     for(i=0; i < floats.length; i++){
         floats[i].style.display = "none";
@@ -35,25 +36,6 @@ function urlLoad(){
     return urlLoad;
 };
 
-function floatQuickMail(){
-    const quickMail = document.getElementsByClassName("float QuickMail");
-    if(mailExpansionTracker === 0){
-        let div = document.createElement("div");
-        div.setAttribute('class','float MailExpansion');
-        div.innerHTML = `
-            <form class="contactForm">
-                <label for="email">Your Email (required)</label>
-                <input type="text" id="email" name="email">
-                <br>
-                <input type="submit" value="Send">
-                <br>
-            </form>   
-        `;
-        quickMail[0].appendChild(div);
-        mailExpansionTracker++;
-    };
-};
-
 function floatInjector(floatRoot, floatClass, float){
     const root = document.getElementsByClassName(floatRoot);
     if(mailExpansionTracker === 0){
@@ -64,18 +46,40 @@ function floatInjector(floatRoot, floatClass, float){
     };
 };
 
-floatInjector()
-floatInjector("float QuickMail", "MailExpansion", quickMail)
+function activeCheck(){
+    fetch(`/floats/activeFloats`)
+    .then(response => response.text())
+    .then((data) => {
+        parseAndUpdate(data);
+    });
+};
 
-let quickMail = `
-<form class="contactForm">
-    <label for="email">Your Email (required)</label>
-    <input type="text" id="email" name="email">
-    <br>
-    <input type="submit" value="Send">
-    <br>
-</form>
-`
+function parseAndUpdate(sourceType, sourceData){
+    let dataParse = sourceData;
+    while(dataParse.length > 0){
+        let commaSeperator = dataParse.indexOf(",");
+        let data = dataParse.slice(0, commaSeperator);
+        dataParse = dataParse.slice(commaSeperator+2);
+        if(sourceType === "activeFloats"){
+            activeFloats.push(data);
+        }else{
+            activeServices.push(data);
+        };
+    };
+}
+
+function floatLoader(float, extension){
+    fetch(`/floats/${float}.${extension}`)
+    .then(response => response.text())
+    .then((data) => {
+        if(float === "quick-mail"){
+            floatInjector("float QuickMail", "MailExpansion", data);
+            mailExpansionTracker++;
+        }else{
+            floatInjector("floatTank", float, data);
+        };
+    });
+};
 
 function floatDemoPopulate(){
     for(i=0; i<activeDemos.length; i++){
@@ -140,10 +144,8 @@ function parseAndUpdateDemos(demos){
 }
 
 
+activeCheck();
 externalDemoLoader();
-
 window.onload = () => {
     floatTank(urlLoad());
 };
-
-
