@@ -1,5 +1,6 @@
-let activeDemos = [];
-let activeFloats = [];
+const activeDemos = [];
+const activeFloats = [];
+const activeServices = [];
 let mailExpansionTracker = 0;
 
 function floatTank(float){
@@ -46,21 +47,25 @@ function floatInjector(floatRoot, floatClass, float){
     };
 };
 
-function activeFloatCheck(){
-    fetch(`/floats/activeFloats`)
+function activeCheck(dataType){
+    fetch(`/floats/${dataType}`)
     .then(response => response.text())
     .then((data) => {
-        parseAndUpdateFloats(data);
+        parseAndUpdate(dataType, data);
     });
 };
 
-function parseAndUpdateFloats(floats){
-    let floatParse = floats;
-    while(floatParse.length > 0){
-        let commaSeperator = floatParse.indexOf(",");
-        let float = floatParse.slice(0, commaSeperator);
-        floatParse = floatParse.slice(commaSeperator+2);
-        activeFloats.push(float)
+function parseAndUpdate(sourceType, sourceData){
+    let dataParse = sourceData;
+    while(dataParse.length > 0){
+        let commaSeperator = dataParse.indexOf(",");
+        let data = dataParse.slice(0, commaSeperator);
+        dataParse = dataParse.slice(commaSeperator+2);
+        if(sourceType === "activeFloats"){
+            activeFloats.push(data);
+        }else{
+            activeServices.push(data);
+        };
     };
 }
 
@@ -77,29 +82,24 @@ function floatLoader(float, extension){
 };
 
 function fileExists(path) {
-    if(path){
-        var req = new XMLHttpRequest();
-        req.open('GET', path, false);
-        req.send();
-        return req.status==200;
-    } else {
-        return false;
-    }
+    let img = new Image();
+    img.src = path;
+    return img.height != 0;
 }
 
 function floatHandler(){
-    activeFloatCheck();
     for(i=0; i<activeFloats.length; i++){
-        if(fileExists(`/floats/${activeFloats[i]}.header`)){
+        if(activeFloats[i] != "services"){
             floatLoader(activeFloats[i], "header");
-        };
-        if(fileExists(`/floats/${activeFloats[i]}.body`)){
             floatLoader(activeFloats[i], "body");
-        };
-        if(fileExists(`/floats/${activeFloats[i]}.form`)){
             floatLoader(activeFloats[i], "form");
         };
-    }
+    };
+    for(i=0; i<activeServices.length; i++){
+        console.log(`services-${activeServices[i]}`);
+        floatLoader(`services-${activeServices[i]}`, "header");
+        floatLoader(`services-${activeServices[i]}`, "body");
+    };
     floatTank(urlLoad());
 }
 
@@ -165,10 +165,11 @@ function parseAndUpdateDemos(demos){
     };
 }
 
+
+activeCheck("activeFloats");
+activeCheck("activeServices");
 externalDemoLoader();
 
 window.onload = () => {
     floatHandler()
 };
-
-
